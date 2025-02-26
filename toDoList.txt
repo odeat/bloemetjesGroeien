@@ -1,3 +1,4 @@
 1. de druppels laten vallen d.m.v  een for loop 
 2. de stengels laten groeien 
-3. nieuwe bloemetjes erbij komen door een bijtje die langsvlieft
+3. nieuwe bloemetjes erbij komen door een bijtje die langs vlieft
+4. de druppel en het gietertje mogen niet buiten scherm komen

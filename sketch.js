@@ -16,12 +16,12 @@ class Druppel{
 }
 
 // lijst met 2 bloemetjes, bestaat uit : x, y, rectHeight, circleRadius, bloemKleur
-const bloemetjes = [
+let bloemetjes = [
   new Bloem(50, window.innerHeight - 50, 50, 50, "yellow"), 
   new Bloem(200, window.innerHeight - 100, 100, 100, "red")
 ];
 // lijst met druppeltjes, bestaat uit: x en y
-const druppels = [
+let druppels = [
 new Druppel(100, 100),
 ];
 
@@ -34,9 +34,21 @@ function setup() {
 function draw() {
   // -------------------UPDATE-------------------
   for(var druppel of druppels){
-    druppel.y += 8
+    druppel.y += 6 // druppel speed
   }
 
+  if(mouseIsPressed == true){ // checks if the mouse is pressed so druppels can fall down
+    let druppel2 = new Druppel(mouseX - 50, mouseY)
+    druppels.push(druppel2)
+  }
+
+  var temp = []
+  for(var druppel of druppels){
+    if (druppel.y < window.innerHeight - 0){
+      temp.push(druppel)
+    }
+  }
+  druppels = temp
 
 
 
@@ -63,7 +75,7 @@ function draw() {
   fill("lightblue")
   for(var druppel of druppels){
     circle(druppel.x, druppel.y, 10)
-  } 
+  }
 
   // gietertje
   fill(0, 0, 255)
