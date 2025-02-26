@@ -1,33 +1,36 @@
 class Bloem{
-  constructor(x, y, rectHeight, circleRadius, bloemKleur){
+  constructor(x, y, steelHoogte, circleRadius, bloemKleur){
     this.x = x;
     this.y = y;
-    this.rectHeight = rectHeight;
+    this.steelHoogte = steelHoogte;
     this.circleRadius = circleRadius;
     this.bloemKleur = bloemKleur;
   }
 }
 
 class Druppel{
-  constructor(x, y){
+  constructor(x, y, color){
     this.x = x;
     this.y = y;
+    this.color = color;
   }
 }
 
-// lijst met 2 bloemetjes, bestaat uit : x, y, rectHeight, circleRadius, bloemKleur
+// lijst met 2 bloemetjes, bestaat uit : x, y, steelHoogte, circleRadius, bloemKleur
 let bloemetjes = [
-  new Bloem(50, window.innerHeight - 50, 50, 50, "yellow"), 
-  new Bloem(200, window.innerHeight - 100, 100, 100, "red")
+  // new Bloem(50, window.innerHeight, 50, 50, "yellow"), 
+  // new Bloem(200, window.innerHeight, 100, 100, "red")
 ];
 // lijst met druppeltjes, bestaat uit: x en y
 let druppels = [
-new Druppel(100, 100),
 ];
 
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
+  for(let x = 0; x <= window.innerWidth - 10; x += random(10, 30)){
+    bloemetjes.push(new Bloem(x, window.innerHeight, map(Math.sin(x / 30),-1, 1, 30, 100), random(30, 100), random(["purple", "deeppink", "yellow", "red", "springgreen", "chartreuse", "orange"])))
+  }
 }
 
 
@@ -38,7 +41,8 @@ function draw() {
   }
 
   if(mouseIsPressed == true){ // checks if the mouse is pressed so druppels can fall down
-    let druppel2 = new Druppel(mouseX - 50, mouseY)
+    
+    let druppel2 = new Druppel(mouseX - 50, mouseY, random(["lightblue", "aqua", "cadetblue", "darkcyan"]))
     druppels.push(druppel2)
   }
 
@@ -50,11 +54,17 @@ function draw() {
   }
   druppels = temp
 
-
-
-
-
-
+  for(druppel of druppels){
+    for(bloem of bloemetjes){
+      var x = bloem.x - druppel.x
+      var y = bloem.y - druppel.y
+      var length = Math.sqrt(x*x + y*y)
+        
+      if(length < 20){
+          bloem.steelHoogte += 1;
+      }
+    }
+  }
 
   // -------------------RENDER-------------------
   background(199, 220, 239);  
@@ -63,18 +73,18 @@ function draw() {
     let bloem = bloemetjes[i];
       bloem.x;
       bloem.y;
-      bloem.rectHeight;
+      bloem.steelHoogte;
       bloem.circleRadius;
       fill("green")
-      rect(bloem.x, bloem.y, 10, bloem.rectHeight);
+      rect(bloem.x, bloem.y, 10, - bloem.steelHoogte);
       fill(bloem.bloemKleur);
-      circle(bloem.x + 5, bloem.y - 15, bloem.circleRadius)
+      circle(bloem.x + 5, bloem.y - bloem.steelHoogte , bloem.circleRadius)
   }
 
   // druppel
-  fill("lightblue")
   for(var druppel of druppels){
-    circle(druppel.x, druppel.y, 10)
+    fill(druppel.color)
+    circle(druppel.x, druppel.y, random(20))
   }
 
   // gietertje
