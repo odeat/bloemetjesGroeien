@@ -1,4 +1,16 @@
-1. de druppels laten vallen d.m.v  een for loop 
-2. de stengels laten groeien 
-3. nieuwe bloemetjes erbij komen door een bijtje die langs vlieft
-4. de druppel en het gietertje mogen niet buiten scherm komen
+voor de volgende keer:
+nieuwe bloemetjes erbij komen door een bij die langs vliegt
+en zaadjes laat vallen waardoor er nieuwe bloemen groeien
+
+steeltje laten verdwijnen 
+bolletje naar beneden laten vallen
+
+EXPLOSIE VAN ZAADJES VOOR NIEUWE BLOEMEN
+
+------------NOTE 2 SELF------------
+
+voor verbetering in de toekomst:
+om herhaling te voorkomen, 1 array bijhouden genaamd "game entities", 
+elk obj krijgt een type die bijhoud (dmv een String) wat het is,
+de forloop rendert alles waardoor je niet de hele tijd door de update 
+en de rtender sectie werkt 
