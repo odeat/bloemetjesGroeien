@@ -61,7 +61,7 @@ function draw() {
       var length = Math.sqrt(x*x + y*y)
         
       if(length < 20){
-          bloem.steelHoogte += 1;
+          bloem.steelHoogte += 2;
       }
     }
   }
